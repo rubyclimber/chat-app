@@ -1,0 +1,48 @@
+<section class="main-app-shell">
+    <div id="pageBody">
+        <div class="heading-space"></div>
+        <div id="siteHeader">
+            <div id="headerContent">
+                <ul class="mynav" *ngIf="isLoggedIn()">
+                    <li (mouseover)="showUsers = true" (mouseout)="showUsers = false">
+                        <a>Authors</a>
+                        <ul [style.visibility]="showUsers ? 'visible' : 'hidden'" [style.min-width]="'111px'">
+                            <li *ngFor="let user of users">
+                                <a>{{user.firstName}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li (mouseover)="showCategories = true" (mouseout)="showCategories = false">
+                      <a>Categories</a>
+                      <ul [style.visibility]="showCategories ? 'visible' : 'hidden'" style="min-width: 130px;">
+                          <li *ngFor="let category of categories">
+                              <a>{{category.description}}</a>
+                          </li>
+                      </ul>
+                  </li>
+                </ul>
+                <a routerLink="">
+                    <img src="../assets/ohGnarlyLogo.png" id="siteLogo">
+                </a>
+            </div>
+        </div>
+        <div class="contentLogoContainer">
+          <a routerLink="chat-search">
+            <img class="contentLogo" src="../assets/KillBillbloodsplatterbanner.jpg">
+          </a>
+        </div>
+        <div class="contentContainter">
+            <div class="leftNav">
+                <img src="../assets/leftNav1.png" class="leftNavAd" />
+                <span style="height: 100px; display: block;"></span>
+                <img class="leftNavAd" src="../assets/leftNav2.png" />
+            </div>
+            <div class="pageContent">
+                <app-main></app-main>
+            </div>
+            <div class="rightNav">
+                <img class="rightNavAd" src="../assets/rightNav.png" />
+            </div>
+        </div>
+    </div>
+</section>

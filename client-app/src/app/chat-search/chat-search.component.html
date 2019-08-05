@@ -1,0 +1,21 @@
+<div id="chat-window" tabindex="5000" class="chat-window col-xs-12">
+  <app-message-viewer [messages]="messages" [userId]="userId"></app-message-viewer>
+</div>
+<div class="required-field-block negate-padding">
+	<div class="input-group col-xs-12 search-controls">
+    <div class="col-xs-4">
+      <select [(ngModel)]="searchType" class="form-control">
+        <option *ngFor="let st of searchTypes" [value]="st.value">{{st.text}}</option>
+      </select>
+    </div>
+    <div class="col-xs-4" *ngIf="searchType === 'searchText'">
+      <input class="form-control" type="text" [(ngModel)]="searchText" placeholder="Search for text" />
+    </div>
+    <div *ngIf="searchType === 'searchDate'" class="col-xs-4">
+      <input class="form-control" type="date" [(ngModel)]="searchDate" />
+    </div>
+    <div class="col-xs-4">
+      <button type="button" class="btn btn-gnarly form-control" (click)="searchMessages()" [disabled]="isSearching">Search</button>
+    </div>
+  </div>
+</div>
