@@ -1,1 +1,1 @@
-web: java -jar target/chat-app-0.0.1-SNAPSHOT.war -p $PORT
+java -Dserver.port=$PORT $JAVA_OPTS -jar target/*.jar
