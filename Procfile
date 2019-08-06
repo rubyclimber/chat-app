@@ -1,1 +1,1 @@
-web: java -jar target/chat-app-1.0.0.war -Dserver.port=$PORT
+web: java -jar target/chat-app-1.0.0.war -p=$PORT
