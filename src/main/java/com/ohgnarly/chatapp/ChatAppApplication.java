@@ -12,9 +12,9 @@ import java.util.Collections;
 public class ChatAppApplication {
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(ChatAppApplication.class);
-        String port = System.getenv("$PORT");
+        String port = System.getenv("PORT");
         System.out.println("Aaron" + port);
-        app.setDefaultProperties(Collections.singletonMap("server.port", System.getenv("$PORT")));
+        app.setDefaultProperties(Collections.singletonMap("server.port", System.getenv("PORT")));
         app.run(args);
     }
 }
