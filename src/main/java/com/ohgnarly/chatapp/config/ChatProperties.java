@@ -1,18 +1,16 @@
 package com.ohgnarly.chatapp.config;
 
-import javax.validation.constraints.NotNull;
-
 public class ChatProperties {
-    private String baseApiUrl;
+    private String apiBaseUrl;
     private String clientId;
     private String clientKey;
 
-    public String getBaseApiUrl() {
-        return baseApiUrl;
+    public String getApiBaseUrl() {
+        return apiBaseUrl;
     }
 
-    public void setBaseApiUrl(String baseApiUrl) {
-        this.baseApiUrl = baseApiUrl;
+    public void setApiBaseUrl(String apiBaseUrl) {
+        this.apiBaseUrl = apiBaseUrl;
     }
 
     public String getClientId() {

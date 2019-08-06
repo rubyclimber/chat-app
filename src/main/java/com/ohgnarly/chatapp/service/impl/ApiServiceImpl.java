@@ -6,8 +6,6 @@ import com.ohgnarly.chatapp.service.ApiService;
 import com.ohgnarly.chatapp.utility.RestUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +24,7 @@ public class ApiServiceImpl implements ApiService {
 
     @Override
     public List<ChatUser> getChatUsers() {
-        String url = chatProperties.getBaseApiUrl() + "users";
+        String url = chatProperties.getApiBaseUrl() + "users";
 
         ParameterizedTypeReference<List<ChatUser>> parameterizedTypeReference =
                 new ParameterizedTypeReference<List<ChatUser>>() {};
@@ -39,7 +37,7 @@ public class ApiServiceImpl implements ApiService {
 
     @Override
     public List<Message> getMessages() {
-        String url = chatProperties.getBaseApiUrl() + "messages";
+        String url = chatProperties.getApiBaseUrl() + "messages";
 
         ParameterizedTypeReference<List<Message>> parameterizedTypeReference =
                 new ParameterizedTypeReference<List<Message>>() {};
@@ -52,7 +50,7 @@ public class ApiServiceImpl implements ApiService {
 
     @Override
     public List<Category> getCategories() {
-        String url = chatProperties.getBaseApiUrl() + "/categories";
+        String url = chatProperties.getApiBaseUrl() + "/categories";
 
         ParameterizedTypeReference<List<Category>> parameterizedTypeReference =
                 new ParameterizedTypeReference<List<Category>>() {};
@@ -65,7 +63,7 @@ public class ApiServiceImpl implements ApiService {
 
     @Override
     public LoginResponse submitLogin(LoginRequest loginRequest) {
-        String url = chatProperties.getBaseApiUrl() + "/chat-login";
+        String url = chatProperties.getApiBaseUrl() + "/chat-login";
 
         ParameterizedTypeReference<LoginResponse> loginResponseType =
                 new ParameterizedTypeReference<LoginResponse>() {};
@@ -80,7 +78,7 @@ public class ApiServiceImpl implements ApiService {
 
     @Override
     public List<Message> getMessages(MessageRequest messageRequest) {
-        String url = chatProperties.getBaseApiUrl() + "/messages";
+        String url = chatProperties.getApiBaseUrl() + "/messages";
 
         ParameterizedTypeReference<List<Message>> messageListType =
                 new ParameterizedTypeReference<List<Message>>() {};

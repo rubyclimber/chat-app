@@ -13,14 +13,10 @@ import static java.lang.System.getenv;
 public class BeanConfiguration {
     @Bean
     public ChatProperties chatProperties() {
-        System.out.println("Configuring ChatProperties");
-        System.out.println(getenv());
         ChatProperties chatProperties = new ChatProperties();
-        chatProperties.setBaseApiUrl(getenv("BASE_API_URL"));
+        chatProperties.setApiBaseUrl(getenv("API_BASE_URL"));
         chatProperties.setClientId(getenv("API_CLIENT_ID"));
         chatProperties.setClientKey(getenv("API_CLIENT_KEY"));
-        System.out.println(format("%s - %s - %s", chatProperties.getBaseApiUrl(), chatProperties.getClientId(),
-                chatProperties.getClientKey()));
         return chatProperties;
     }
 
