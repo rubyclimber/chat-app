@@ -28,6 +28,8 @@ public class ApiServiceImpl implements ApiService {
     public List<ChatUser> getChatUsers() {
         String url = chatProperties.getBaseApiUrl() + "users";
 
+        System.out.println("URL: " + url);
+
         ParameterizedTypeReference<List<ChatUser>> parameterizedTypeReference =
                 new ParameterizedTypeReference<List<ChatUser>>() {};
 
