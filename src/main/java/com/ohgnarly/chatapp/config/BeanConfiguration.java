@@ -14,6 +14,7 @@ public class BeanConfiguration {
     @Bean
     public ChatProperties chatProperties() {
         System.out.println("Configuring ChatProperties");
+        System.out.println(getenv());
         ChatProperties chatProperties = new ChatProperties();
         chatProperties.setBaseApiUrl(getenv("BASE_API_URL"));
         chatProperties.setClientId(getenv("API_CLIENT_ID"));
