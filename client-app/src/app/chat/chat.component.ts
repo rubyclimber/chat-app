@@ -24,7 +24,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   pageNumber: number;
   currentScrollHeight: number;
   stompClient;
-  serverUrl: String = 'http://localhost:1966/websocket';
+  serverUrl: String;
 
   constructor(private utilitySvc: UtilityService, private dataSvc: DataService) {
     this.pageTitle = 'Oh Gnarly';
@@ -34,6 +34,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.notifyInterval = 0;
     this.pageNumber = 0;
     this.userId = this.dataSvc.getUserId();
+    this.serverUrl = this.dataSvc.getSocketUrl();
 
     window.onblur = (() => {
       const button = document.getElementById('sendButton');

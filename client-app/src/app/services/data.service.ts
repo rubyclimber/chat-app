@@ -44,8 +44,12 @@ export class DataService {
     return this.userId;
   }
 
-  setSocketService(socketUrl: string) {
+  setSocketUrl(socketUrl: string) {
     this.socketUrl = socketUrl;
+  }
+
+  getSocketUrl(): string {
+    return this.socketUrl;
   }
 
   messageSearch(data: any): Observable<Message[]> {
