@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.client.RestTemplate;
 
-import static java.lang.String.format;
 import static java.lang.System.getenv;
 
 @Configuration

@@ -1,19 +1,19 @@
 package com.ohgnarly.chatapp.model;
 
 public class ChatUser {
-    private String id;
+    private String userId;
     private String userName;
     private String firstName;
     private String lastName;
     private String emailAddress;
     private String createdAt;
 
-    public String getId() {
-        return id;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUserId(String id) {
+        this.userId = id;
     }
 
     public String getUserName() {

@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { IEntity } from '../classes/ientity';
+import { Message } from '../classes/message';
 
 @Injectable()
 export class UtilityService {
 
   constructor() { }
 
-  contains<T extends IEntity>(entities: Array<T>, id: string) {
-    for (const ent of entities) {
-      if (ent.id === id) {
+  contains(messaages: Array<Message>, id: string) {
+    for (const msg of messaages) {
+      if (msg.messageId === id) {
         return true;
       }
     }

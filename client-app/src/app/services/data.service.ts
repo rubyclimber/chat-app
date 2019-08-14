@@ -12,7 +12,7 @@ import { SocketService } from './socket.service';
 })
 export class DataService {
   userId: string;
-  socketService: SocketService;
+  socketUrl: string;
 
   constructor(private httpClient: HttpClient) {
   }
@@ -45,7 +45,7 @@ export class DataService {
   }
 
   setSocketService(socketUrl: string) {
-    this.socketService = new SocketService(socketUrl);
+    this.socketUrl = socketUrl;
   }
 
   messageSearch(data: any): Observable<Message[]> {

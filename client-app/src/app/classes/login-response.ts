@@ -1,5 +1,7 @@
+import { User } from './user';
+
 export class LoginResponse {
     success: boolean;
-    userId: string;
+    user: User;
     socketUrl: string;
 }

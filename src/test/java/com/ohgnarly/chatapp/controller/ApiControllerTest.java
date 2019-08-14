@@ -1,6 +1,8 @@
 package com.ohgnarly.chatapp.controller;
 
 import com.ohgnarly.chatapp.model.*;
+import com.ohgnarly.chatapp.request.LoginRequest;
+import com.ohgnarly.chatapp.response.LoginResponse;
 import com.ohgnarly.chatapp.service.ApiService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +30,7 @@ public class ApiControllerTest {
     private ApiService apiService;
 
     @Test
-    public void testGetChatUsers() {
+    public void testGetChatUsers() throws Throwable {
         //arrange
         ChatUser chatUser = new ChatUser();
         when(apiService.getChatUsers()).thenReturn(singletonList(chatUser));
@@ -43,7 +45,7 @@ public class ApiControllerTest {
     }
 
     @Test
-    public void testGetMessages() {
+    public void testGetMessages() throws Throwable {
         //arrange
         Message message = new Message();
         when(apiService.getMessages()).thenReturn(singletonList(message));
@@ -58,7 +60,7 @@ public class ApiControllerTest {
     }
 
     @Test
-    public void testGetCategories() {
+    public void testGetCategories() throws Throwable {
         //arrange
         Category category = new Category();
         when(apiService.getCategories()).thenReturn(singletonList(category));
@@ -73,7 +75,7 @@ public class ApiControllerTest {
     }
 
     @Test
-    public void testSubmitLogin() {
+    public void testSubmitLogin() throws Throwable {
         //arrange
         LoginRequest loginRequest = new LoginRequest();
         LoginResponse loginResponse = new LoginResponse();
@@ -90,7 +92,7 @@ public class ApiControllerTest {
     }
 
     @Test
-    public void testGetMessages_GivenMessageRequest() {
+    public void testGetMessages_GivenMessageRequest() throws Throwable {
         //arrange
         MessageRequest messageRequest = new MessageRequest();
         Message message = new Message();

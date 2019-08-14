@@ -3,6 +3,8 @@ import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Message } from '../classes/message';
 import { UtilityService } from '../services/utility.service';
 import { DataService } from '../services/data.service';
+import * as Stomp from 'stompjs';
+import * as SockJS from 'sockjs-client';
 
 
 @Component({
@@ -21,6 +23,8 @@ export class ChatComponent implements OnInit, OnDestroy {
   notifyTitle: string;
   pageNumber: number;
   currentScrollHeight: number;
+  stompClient;
+  serverUrl: String = 'http://localhost:1966/websocket';
 
   constructor(private utilitySvc: UtilityService, private dataSvc: DataService) {
     this.pageTitle = 'Oh Gnarly';
@@ -42,14 +46,17 @@ export class ChatComponent implements OnInit, OnDestroy {
   ngOnInit() {
     setTimeout(this.getMessages.bind(this), 1, true);
 
-    this.dataSvc.socketService
-      .fromEvent('chat-message')
-      .subscribe(this.loadMessage.bind(this));
+    let ws = new SockJS(this.serverUrl);
+    this.stompClient = Stomp.over(ws);
+    this.stompClient.debug = () => {};
+    this.stompClient.connect({}, this.connectToSocket.bind(this));
+  }
+
+  connectToSocket(frame) {
+    this.stompClient.subscribe("/chat-message", this.loadMessage.bind(this));
   }
 
   ngOnDestroy() {
-    this.dataSvc.socketService.emit('disconnect', {});
-    this.dataSvc.socketService.removeAllListeners();
     const messageField = document.getElementById('message-field');
     if (messageField) {
       messageField.onfocus = undefined;
@@ -82,13 +89,12 @@ export class ChatComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const message: Message = {
+    const message = {
       body: this.message,
-      userId: this.userId,
-      id: ''
+      userId: this.userId
     };
 
-    this.dataSvc.socketService.emit('server-message', message);
+    this.stompClient.send('/app/server-message', {}, JSON.stringify(message));
     this.message = '';
   }
 
@@ -145,7 +151,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   loadMessage(data) {
-    const message = data as Message;
+    const message = JSON.parse(data.body) as Message;
     message.body = this.processMessageBody(message.body);
     this.messages.push(message);
 

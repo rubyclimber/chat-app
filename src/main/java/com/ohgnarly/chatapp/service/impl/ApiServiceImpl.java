@@ -1,13 +1,20 @@
 package com.ohgnarly.chatapp.service.impl;
 
 import com.ohgnarly.chatapp.config.ChatProperties;
+import com.ohgnarly.chatapp.exception.ChatException;
 import com.ohgnarly.chatapp.model.*;
+import com.ohgnarly.chatapp.request.LoginRequest;
+import com.ohgnarly.chatapp.response.CategoriesResponse;
+import com.ohgnarly.chatapp.response.LoginResponse;
+import com.ohgnarly.chatapp.response.MessagesResponse;
+import com.ohgnarly.chatapp.response.UsersResponse;
 import com.ohgnarly.chatapp.service.ApiService;
 import com.ohgnarly.chatapp.utility.RestUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClientException;
 
 import java.util.List;
 
@@ -23,46 +30,46 @@ public class ApiServiceImpl implements ApiService {
     }
 
     @Override
-    public List<ChatUser> getChatUsers() {
+    public List<ChatUser> getChatUsers() throws ChatException {
         String url = chatProperties.getApiBaseUrl() + "users";
 
-        ParameterizedTypeReference<List<ChatUser>> parameterizedTypeReference =
-                new ParameterizedTypeReference<List<ChatUser>>() {};
+        ParameterizedTypeReference<UsersResponse> parameterizedTypeReference =
+                new ParameterizedTypeReference<UsersResponse>() {};
 
-        ResponseEntity<List<ChatUser>> response =
-                restUtility.get(url, parameterizedTypeReference);
+        ResponseEntity<UsersResponse> response =
+                    restUtility.get(url, parameterizedTypeReference);
 
-        return response.getBody();
+        return response.getBody().getUsers();
     }
 
     @Override
-    public List<Message> getMessages() {
+    public List<Message> getMessages() throws ChatException {
         String url = chatProperties.getApiBaseUrl() + "messages";
 
-        ParameterizedTypeReference<List<Message>> parameterizedTypeReference =
-                new ParameterizedTypeReference<List<Message>>() {};
+        ParameterizedTypeReference<MessagesResponse> parameterizedTypeReference =
+                new ParameterizedTypeReference<MessagesResponse>() {};
 
-        ResponseEntity<List<Message>> response =
+        ResponseEntity<MessagesResponse> response =
                 restUtility.get(url, parameterizedTypeReference);
 
-        return response.getBody();
+        return response.getBody().getMessages();
     }
 
     @Override
-    public List<Category> getCategories() {
+    public List<Category> getCategories() throws ChatException {
         String url = chatProperties.getApiBaseUrl() + "/categories";
 
-        ParameterizedTypeReference<List<Category>> parameterizedTypeReference =
-                new ParameterizedTypeReference<List<Category>>() {};
+        ParameterizedTypeReference<CategoriesResponse> parameterizedTypeReference =
+                new ParameterizedTypeReference<CategoriesResponse>() {};
 
-        ResponseEntity<List<Category>> response =
+        ResponseEntity<CategoriesResponse> response =
                 restUtility.get(url, parameterizedTypeReference);
 
-        return response.getBody();
+        return response.getBody().getCategories();
     }
 
     @Override
-    public LoginResponse submitLogin(LoginRequest loginRequest) {
+    public LoginResponse submitLogin(LoginRequest loginRequest) throws ChatException {
         String url = chatProperties.getApiBaseUrl() + "/chat-login";
 
         ParameterizedTypeReference<LoginResponse> loginResponseType =
@@ -77,14 +84,14 @@ public class ApiServiceImpl implements ApiService {
     }
 
     @Override
-    public List<Message> getMessages(MessageRequest messageRequest) {
+    public List<Message> getMessages(MessageRequest messageRequest) throws ChatException {
         String url = chatProperties.getApiBaseUrl() + "/messages";
 
-        ParameterizedTypeReference<List<Message>> messageListType =
-                new ParameterizedTypeReference<List<Message>>() {};
+        ParameterizedTypeReference<MessagesResponse> messageListType =
+                new ParameterizedTypeReference<MessagesResponse>() {};
 
-        ResponseEntity<List<Message>> response = restUtility.post(url, messageRequest, messageListType);
+        ResponseEntity<MessagesResponse> response = restUtility.post(url, messageRequest, messageListType);
 
-        return response.getBody();
+        return response.getBody().getMessages();
     }
 }

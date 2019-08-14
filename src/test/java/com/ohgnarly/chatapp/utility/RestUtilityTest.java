@@ -29,7 +29,7 @@ public class RestUtilityTest {
     private ChatProperties chatProperties;
 
     @Test
-    public void testGet() {
+    public void testGet() throws Throwable {
         //arrange
         String url = "url string";
         HttpEntity httpEntity = new HttpEntity(new HttpHeaders());
@@ -50,7 +50,7 @@ public class RestUtilityTest {
     }
 
     @Test
-    public void testPost() {
+    public void testPost()  throws Throwable {
         //arrange
         String url = "url string";
         ParameterizedTypeReference<String> parameterizedTypeReference =

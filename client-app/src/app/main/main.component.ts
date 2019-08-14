@@ -29,7 +29,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
   login(loginResp: LoginResponse): void {
     if (loginResp.success) {
-      this.dataSvc.setUserId(loginResp.userId);
+      this.dataSvc.setUserId(loginResp.user.userId);
       this.dataSvc.setSocketService(loginResp.socketUrl);
     }
   }

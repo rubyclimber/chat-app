@@ -1,9 +1,7 @@
-import { IEntity } from './ientity';
-
-export class Message implements IEntity {
+export class Message {
     body: string;
     conversationId?: string;
     createdAt?: Date;
     userId: string;
-    id: string;
+    messageId: string;
 }
