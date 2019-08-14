@@ -1,10 +1,13 @@
 package com.ohgnarly.chatapp.model;
 
+import java.time.LocalDateTime;
+
 public class Message {
     private String body;
     private String id;
     private String userId;
     private String conversationId;
+    private LocalDateTime createdAt;
 
     public String getBody() {
         return body;
@@ -36,5 +39,13 @@ public class Message {
 
     public void setConversationId(String conversationId) {
         this.conversationId = conversationId;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
