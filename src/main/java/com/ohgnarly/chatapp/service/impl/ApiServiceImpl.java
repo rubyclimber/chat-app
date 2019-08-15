@@ -18,6 +18,8 @@ import org.springframework.web.client.RestClientException;
 
 import java.util.List;
 
+import static java.lang.String.format;
+
 @Service
 public class ApiServiceImpl implements ApiService {
     private RestUtility restUtility;
@@ -43,8 +45,8 @@ public class ApiServiceImpl implements ApiService {
     }
 
     @Override
-    public List<Message> getMessages() throws ChatException {
-        String url = chatProperties.getApiBaseUrl() + "messages";
+    public List<Message> getMessages(int pageNumber) throws ChatException {
+        String url = format("%smessages?pageNumber=%s", chatProperties.getApiBaseUrl(), pageNumber);
 
         ParameterizedTypeReference<MessagesResponse> parameterizedTypeReference =
                 new ParameterizedTypeReference<MessagesResponse>() {};

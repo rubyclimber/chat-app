@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class Message {
     private String body;
-    private String id;
+    private String messageId;
     private String userId;
     private String conversationId;
     private LocalDateTime createdAt;
@@ -17,12 +17,12 @@ public class Message {
         this.body = body;
     }
 
-    public String getId() {
-        return id;
+    public String getMessageId() {
+        return messageId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setMesageId(String messageId) {
+        this.messageId = messageId;
     }
 
     public String getUserId() {

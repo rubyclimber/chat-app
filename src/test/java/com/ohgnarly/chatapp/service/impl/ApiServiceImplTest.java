@@ -71,6 +71,7 @@ public class ApiServiceImplTest {
     @Test
     public void testGetMessages() throws Throwable {
         //arrange
+        int pageNumber = 1;
         Message message = new Message();
         MessagesResponse messagesResponse = new MessagesResponse();
         messagesResponse.setMessages(singletonList(message));
@@ -79,7 +80,7 @@ public class ApiServiceImplTest {
                 .thenReturn(new ResponseEntity<>(messagesResponse, OK));
 
         //act
-        List<Message> messages = apiService.getMessages();
+        List<Message> messages = apiService.getMessages(pageNumber);
 
         //assert
         assertNotNull(messages);
@@ -93,7 +94,7 @@ public class ApiServiceImplTest {
         when(mockRestUtility.get(anyString(), any()))
                 .thenThrow(ChatException.class);
         //act
-        apiService.getMessages();
+        apiService.getMessages(1);
     }
 
     @Test

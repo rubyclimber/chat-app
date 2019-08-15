@@ -10,11 +10,11 @@ import java.util.List;
 public interface ApiService {
     List<ChatUser> getChatUsers() throws ChatException;
 
-    List<Message> getMessages() throws ChatException ;
+    List<Message> getMessages(int pageNumber) throws ChatException;
 
-    List<Category> getCategories() throws ChatException ;
+    List<Category> getCategories() throws ChatException;
 
-    LoginResponse submitLogin(LoginRequest loginRequest) throws ChatException ;
+    LoginResponse submitLogin(LoginRequest loginRequest) throws ChatException;
 
-    List<Message> getMessages(MessageRequest messageRequest) throws ChatException ;
+    List<Message> getMessages(MessageRequest messageRequest) throws ChatException;
 }

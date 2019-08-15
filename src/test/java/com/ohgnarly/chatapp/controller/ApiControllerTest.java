@@ -18,6 +18,7 @@ import java.util.List;
 import static java.util.Collections.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.HttpStatus.*;
 
@@ -48,10 +49,10 @@ public class ApiControllerTest {
     public void testGetMessages() throws Throwable {
         //arrange
         Message message = new Message();
-        when(apiService.getMessages()).thenReturn(singletonList(message));
+        when(apiService.getMessages(anyInt())).thenReturn(singletonList(message));
 
         //act
-        ResponseEntity<List<Message>> response = apiController.getMessages();
+        ResponseEntity<List<Message>> response = apiController.getMessages(0);
 
         //assert
         assertEquals(OK, response.getStatusCode());

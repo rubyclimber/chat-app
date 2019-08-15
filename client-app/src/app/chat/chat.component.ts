@@ -47,6 +47,10 @@ export class ChatComponent implements OnInit, OnDestroy {
   ngOnInit() {
     setTimeout(this.getMessages.bind(this), 1, true);
 
+    setTimeout(this.setSocketConnection.bind(this), 1)
+  }
+
+  setSocketConnection() {
     let ws = new SockJS(this.serverUrl);
     this.stompClient = Stomp.over(ws);
     this.stompClient.debug = () => {};
